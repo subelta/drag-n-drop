@@ -34,17 +34,13 @@ ul:empty {
     transform: rotate(8deg);
 }
 
+.ext-drop-zone {
+    height: 600px;
+    overflow: auto;
+}
+
 .draggable-article {
     background-color: coral;
     width: 300px;
 }
 
-/* .some-place-safe { */
-    /* background-color: greenyellow; */
-/* } */
-
-/* .some-other-place { */
-    /* width: 300px; */
-    /* background-color: blueviolet; */
-/* } */
-/*  */

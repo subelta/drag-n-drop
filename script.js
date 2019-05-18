@@ -29,6 +29,8 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
     element.ondragstart = function() {
       return false;
     };
+
+    elemObject.oldZindex = element.style.zIndex;
     elemObject.element = element;
     elemObject.initialX = e.pageX; //начальные коориднаты зажатия
     elemObject.initialY = e.pageY;
@@ -75,7 +77,6 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
 
 
   function onMouseOver(e) {
-    // var extDropField = findDroppable(e);
     var el = elemObject.element;
     var target = e.target;  
   
@@ -88,11 +89,9 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
 
 
     if (target.classList.contains(extDropFieldClass)) {
-      resetHighlighted()
       var dropZone = target.querySelector("." + dropFieldClass);
       dropZone.appendChild(highlighted);
     } else if (target.classList.contains(draggableClass)) {
-      resetHighlighted()
       target.parentElement.insertBefore(highlighted, target);
     }
   }
@@ -100,11 +99,11 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
 
   function startDrag(e) {
     var el = elemObject.element;
-    resetHighlighted();
+    setHighlighted();
     
     el.parentElement.insertBefore(highlighted, el);
     document.body.appendChild(el);
-    // elemObject.element.style.zIndex = 9999;
+    elemObject.element.style.zIndex = 9999;
     el.style.position = 'fixed';
     el.classList.add(dragStyleClass);
   }
@@ -115,22 +114,23 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
     el.style.pointerEvents = 'auto';
     el.style.position = "static";
     el.classList.remove(dragStyleClass);
+    elemObject.element.style.zIndex = elemObject.oldZindex;
 
     highlighted.replaceWith(el);
     highlighted = false;
   };
 
-  function resetHighlighted() {
+
+  function setHighlighted() {
     var el = elemObject.element;
 
-    if (highlighted) {
-      highlighted.parentElement.removeChild(highlighted);
+    if (!highlighted) {
+      highlighted = document.createElement(el.tagName);
+      highlighted.classList.add(highlightClass);
+      highlighted.classList.add(draggableClass);
+      highlighted.style.height = el.offsetHeight;
+      highlighted.style.width = el.offsetWidth;
     }
-    highlighted = document.createElement(el.tagName);
-    highlighted.classList.add(highlightClass);
-    highlighted.classList.add(draggableClass);
-    highlighted.style.height = el.offsetHeight;
-    highlighted.style.width = el.offsetWidth;
   }
 
   //не addEventListener чтобы не слушались посторонние события, в данном случае выделение текста
