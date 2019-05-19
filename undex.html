@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="undex.css">
     <title>Document</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
             </header>
             <ul class="items-list droppable">
                 <li class="draggable">Пройти курс по React</li>
-                <li class="draggable">Отметить День Рождения</li>
+                <li class="draggable"><button>Отметить День Рождения</button></li>
                 <li class="draggable">Записаться на курсы английского языка,  чтобы уехать жить в Лондон
                                       Записаться на курсы английского языка,  чтобы уехать жить в Лондон
                                       Записаться на курсы английского языка,  чтобы уехать жить в Лондон
@@ -53,6 +53,7 @@
         </article>
     </main>
 
+    <script src="drag-n-drop.js"></script>
     <script src="script.js"></script>
     <script>
         var liDrag = new DragScope(
@@ -60,7 +61,7 @@
             "droppable",
             "ext-drop-zone",
             "highlighted",
-            "drag-style"
+            ""
         );
 
         // var articleDrag = new DragScope("draggable-article", 

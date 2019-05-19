@@ -1,0 +1,27 @@
+main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.container {
+    background-color: goldenrod;
+    width: 500px;
+    height: 500px;
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.box {
+    width: 60px;
+    margin: 20px; 
+    height: 60px;
+    background-color: greenyellow;
+}
+
+
+.highlighted {
+    background-color: black;
+}
