@@ -11,9 +11,9 @@ li {
     padding: 10px;
 }
 
-.items-list {
+/* .items-list {
     width: 300px;
-}
+} */
 
 ul:empty {
     background-color: #fcfcad;
@@ -29,7 +29,6 @@ ul:empty {
 }
 
 .drag-style {
-    width: 300px;
     background-color: lightskyblue;
     transform: rotate(8deg);
 }
