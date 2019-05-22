@@ -26,6 +26,24 @@
             <div style="background-color: magenta" class="box"></div>
             <div style="background-color: firebrick" class="box"></div>
         </div>
+
+        <div class="other-container">
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+        </div>
+        <div class="other-container">
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+            <div style="background-color: slateblue" class="other-box"></div>
+        </div>
     </main>
     <script src="drag-n-drop.js"></script>
     <script>
@@ -37,11 +55,13 @@
             ""
         );
 
-        // var articleDrag = new DragScope("draggable-article", 
-        //                            "art-drop-zone",
-        //                            "",
-        //                            "highlighted",
-        //                            "drag-style");
+        var otherDivDrag = new DragScope(
+            "other-box", 
+            "other-container",
+            "other-container",
+            "highlighted",
+            ""
+        );
     </script>
 </body>
 </html>

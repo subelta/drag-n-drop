@@ -5,8 +5,8 @@ main {
 
 .container {
     background-color: goldenrod;
-    width: 500px;
-    height: 500px;
+    width: 200px;
+    height: 200px;
     
     display: flex;
     flex-wrap: wrap;
@@ -15,10 +15,27 @@ main {
 }
 
 .box {
-    width: 60px;
-    margin: 20px; 
-    height: 60px;
+    width: 30px;
+    margin: 10px; 
+    height: 30px;
     background-color: greenyellow;
+}
+
+.other-container {
+    background-color: rgb(92, 73, 124);
+    width: 200px;
+    height: 200px;
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.other-box {
+    width: 30px;
+    margin: 10px; 
+    height: 30px;
 }
 
 
