@@ -89,15 +89,24 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
       return;
     }
 
+    if (e.relatedTarget.classList.contains(draggableClass)) {
+      return;
+    }
 
-    var sibling = target.classList.contains(draggableClass);
-    var extField = target.closest('.' + extDropFieldClass)
+    var isSibling = target.classList.contains(draggableClass);
+    var isExtField = target.closest('.' + extDropFieldClass)
                    
-    if (sibling) {
-      target.parentElement.insertBefore(dropPlace, target);
-    } else if (extField) {
-      var dropZone = extField.querySelector("." + dropFieldClass) ||
-                     extField;
+    if (isSibling) {
+      if(dropPlaceBefore(target, dropPlace)) {
+        insertAfter(dropPlace, target);
+        console.log("inserted after")
+      } else {
+        target.parentElement.insertBefore(dropPlace, target);        
+        console.log("inserted before")
+      }
+    } else if (isExtField) {
+      var dropZone = isExtField.querySelector("." + dropFieldClass) ||
+                     isExtField;
       dropZone.appendChild(dropPlace);
     }
     return false;
@@ -177,6 +186,17 @@ function setDropPlace(elemObject, draggableClass, highlightClass) {
   return dropPlace;
 }
 
+
+function dropPlaceBefore(target, dropPlace) {
+  var prev = target.previousSibling;
+  while (prev) {
+    if(prev == dropPlace) {
+      return true;
+    }
+    prev = prev.previousSibling;
+  }
+  return false;
+}
 
 
 function getCoords(element) {
