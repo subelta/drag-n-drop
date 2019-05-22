@@ -2,8 +2,8 @@
 /**
  * [DragScope]
  * @param  {[String]} draggableClass [HTML класс перетаскиваемого элемента]
- * @param  {[String]} dropFieldClass [HTML класс элемента, куда непосредственно можно положить перетаскиваемый элемент]
- * @param  {[String]} extDropFieldClass [HTML класс элемента, при наведении на который возможен перенос в dropFieldClass
+ * @param  {[String]} dropFieldClass [HTML класс элемента, куда может быть добавлен перетаскиваемый элемент]
+ * @param  {[String]} extDropFieldClass [HTML класс элемента, при наведении на который подсвечивается место в dropFieldClass и возможен перенос 
  *                                     (внутри него должен быть ОДИН dropFieldClass)]
  * @param  {[String]} highlightClass [HTML класс со стилями для подсветки свободного для перетаскивания места]
  * @param  {[String]} dragStyleClass [HTML класс со стилями для отображения переносимого елемента]
@@ -88,6 +88,7 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
     if ((!el) || (target == dropPlace)) {
       return;
     }
+
 
     var sibling = target.classList.contains(draggableClass);
     var extField = target.closest('.' + extDropFieldClass)
