@@ -84,15 +84,15 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
     const el = elemObject.el;
     const target = e.target;  
   
-    if ((!el)) {
+    if ((!el) || (target == dropPlace)) {
       return;
     }
-    //|| (target == dropPlace)
+    //
     
 
     if (e.relatedTarget.classList.contains(dragClass)) {
-      console.log(e.relatedTarget);
-      console.log("realated target contains dragClass");
+      // console.log(e.relatedTarget);
+      // console.log("realated target contains dragClass");
       return;
     }
 
@@ -105,7 +105,7 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
       } else {
         target.parentElement.insertBefore(dropPlace, target);        
       }
-      console.log("inserted");
+      // console.log("inserted");
     } else if (extField) {
       let dropZone = extField.querySelector("." + dropFieldClass) ||
                      extField;
