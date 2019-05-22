@@ -1,7 +1,7 @@
 "use strict"
 /**
  * [DragScope]
- * @param  {[String]} draggableClass [HTML класс перетаскиваемого элемента]
+ * @param  {[String]} dragClass [HTML класс перетаскиваемого элемента]
  * @param  {[String]} dropFieldClass [HTML класс элемента, куда может быть добавлен перетаскиваемый элемент]
  * @param  {[String]} extDropFieldClass [HTML класс элемента, при наведении на который подсвечивается место в dropFieldClass и возможен перенос 
  *                                     (внутри него должен быть ОДИН dropFieldClass)]
@@ -9,26 +9,24 @@
  * @param  {[String]} dragStyleClass [HTML класс со стилями для отображения переносимого елемента]
  * @return {[undefined]}
  */
-var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, highlightClass, dragStyleClass) {
+var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlightClass, dragStyleClass) {
   var elemObject = {};
   var dropPlace = false;
-  // if (extDropFieldClass == dropFieldClass) {
-  //   extDropFieldClass = dropFieldClass;
-  // }
 
 
   function onMouseDown(e) {
-    var element = e.target.closest("." + draggableClass);
+    var element = e.target.closest("." + dragClass);
 
     if ((e.button != 0) || (!element)){ 
         return; 
     } 
 
-    elemObject.oldZindex = element.style.zIndex;
     elemObject.el = element;
     //начальные коориднаты зажатия
-    elemObject.initX = e.pageX; 
-    elemObject.initY = e.pageY;
+    elemObject.init = { 
+      x: e.pageX, 
+      y: e.pageY
+    }; 
     return false;
   }
 
@@ -41,30 +39,31 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
     }  
 
     if(!elemObject.isDragged) {
-      var moveX = e.pageX - elemObject.initX;
-      var moveY = e.pageY - elemObject.initY;
-      if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
+      const move = {
+        x: Math.abs(e.pageX - elemObject.init.x),
+        y: Math.abs(e.pageY - elemObject.init.y) 
+      }
+      if (move.x < 3 && move.y < 3) {
         return;
       }
-      elemObject.isDragged = true;
-      
-      // shiftX/shiftY - разница между координатами левого верхнего угла и точкой зажатия
-      var coords = getCoords(elemObject.el);
-      elemObject.shiftX = elemObject.initX - coords.left;
-      elemObject.shiftY = elemObject.initY - coords.top;
+    
+      // shift.x/shift.y - разница между координатами левого верхнего угла и точкой зажатия
+      const coords = elemObject.el.getBoundingClientRect();
+      elemObject.shift = {
+        x: elemObject.init.x - coords.left,
+        y: elemObject.init.y - coords.top
+      }
       //сохраняем изначальные (вычисленные) размеры элемента в тч padding и border-width (для dropPlace)
       elemObject = saveSizes(elemObject); 
 
-      //подсветка места дропа
-      dropPlace = setDropPlace(elemObject,draggableClass, highlightClass);
-      elemObject.el.parentElement.insertBefore(dropPlace, elemObject.el);
-      elemObject.el = startDrag(elemObject, dragStyleClass);
+      dropPlace = setDropPlace(elemObject, dragClass, highlightClass);
+      elemObject = startDrag(elemObject, dragStyleClass);
+      elemObject.isDragged = true;
     }
 
-    elemObject.el.style.pointerEvents = 'none';
     //перенос объекта при каждом движении мыши
-    elemObject.el.style.left = e.pageX - elemObject.shiftX + 'px'; 
-    elemObject.el.style.top = e.pageY - elemObject.shiftY + 'px';
+    elemObject.el.style.left = e.pageX - elemObject.shift.x + 'px'; 
+    elemObject.el.style.top = e.pageY - elemObject.shift.y + 'px';
     return false;
   }
 
@@ -72,9 +71,9 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
 
   function onMouseUp() {
     if (elemObject.isDragged) {
-      dropElement(elemObject, dropPlace, dragStyleClass);
-      dropPlace = false;
+      dropElement(elemObject, dropPlace, dragStyleClass);  
     }
+    dropPlace = false;
     elemObject = {};
     return false;
   }
@@ -82,31 +81,34 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
 
 
   function onMouseOver(e) {
-    var el = elemObject.el;
-    var target = e.target;  
+    const el = elemObject.el;
+    const target = e.target;  
   
-    if ((!el) || (target == dropPlace)) {
+    if ((!el)) {
+      return;
+    }
+    //|| (target == dropPlace)
+    
+
+    if (e.relatedTarget.classList.contains(dragClass)) {
+      console.log(e.relatedTarget);
+      console.log("realated target contains dragClass");
       return;
     }
 
-    if (e.relatedTarget.classList.contains(draggableClass)) {
-      return;
-    }
-
-    var isSibling = target.classList.contains(draggableClass);
-    var isExtField = target.closest('.' + extDropFieldClass)
+    const isSibling = target.classList.contains(dragClass);
+    const extField = target.closest('.' + extDropFieldClass)
                    
     if (isSibling) {
       if(dropPlaceBefore(target, dropPlace)) {
         insertAfter(dropPlace, target);
-        console.log("inserted after")
       } else {
         target.parentElement.insertBefore(dropPlace, target);        
-        console.log("inserted before")
       }
-    } else if (isExtField) {
-      var dropZone = isExtField.querySelector("." + dropFieldClass) ||
-                     isExtField;
+      console.log("inserted");
+    } else if (extField) {
+      let dropZone = extField.querySelector("." + dropFieldClass) ||
+                     extField;
       dropZone.appendChild(dropPlace);
     }
     return false;
@@ -124,8 +126,8 @@ var DragScope = function(draggableClass, dropFieldClass, extDropFieldClass, high
 
 
 function saveSizes(elemObject) {
-  var el = elemObject.el;
-  var elStyle = window.getComputedStyle(el);
+  const el = elemObject.el;
+  const elStyle = window.getComputedStyle(el);
 
   elemObject.width = elStyle.getPropertyValue('width');
   elemObject.height = elStyle.getPropertyValue('height');
@@ -138,7 +140,9 @@ function saveSizes(elemObject) {
 
 
 function startDrag(elemObject, dragStyleClass) {
-  var el = elemObject.el;
+  let el = elemObject.el;
+  elemObject.oldZindex = el.style.zIndex;
+  elemObject.el.style.pointerEvents = 'none';
   
   el.style.height = elemObject.height;
   el.style.width = elemObject.width;
@@ -149,13 +153,13 @@ function startDrag(elemObject, dragStyleClass) {
   }
 
   document.body.appendChild(el);
-  return el;
+  return elemObject;
 }
 
 
 
 function dropElement(elemObject, dropPlace, dragStyleClass) {
-  var el = elemObject.el;
+  let el = elemObject.el;
 
   el.style.pointerEvents = 'auto';
   el.style.position = "static";
@@ -171,24 +175,25 @@ function dropElement(elemObject, dropPlace, dragStyleClass) {
 
 
 
-function setDropPlace(elemObject, draggableClass, highlightClass) {
-  var el = elemObject.el;
-  var dropPlace; 
-  
+function setDropPlace(elemObject, dragClass, highlightClass) {
+  const el = elemObject.el;
+  let dropPlace; 
+
   if (!dropPlace) {
     dropPlace = document.createElement(el.tagName);
-    dropPlace.classList.add(highlightClass, draggableClass);
+    dropPlace.classList.add(highlightClass, dragClass);
     dropPlace.style.height = elemObject.height;
     dropPlace.style.width = elemObject.width;
     dropPlace.style.padding = elemObject.padding;
     dropPlace.style.borderWidth = elemObject.borderWidth;
   }
+  elemObject.el.parentElement.insertBefore(dropPlace, elemObject.el);
   return dropPlace;
 }
 
 
 function dropPlaceBefore(target, dropPlace) {
-  var prev = target.previousSibling;
+  let prev = target.previousSibling;
   while (prev) {
     if(prev == dropPlace) {
       return true;
@@ -196,15 +201,6 @@ function dropPlaceBefore(target, dropPlace) {
     prev = prev.previousSibling;
   }
   return false;
-}
-
-
-function getCoords(element) {
-  var box = element.getBoundingClientRect();
-  return {
-    top: box.top ,
-    left: box.left
-  };
 }
 
 
