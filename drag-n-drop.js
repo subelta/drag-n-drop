@@ -15,7 +15,7 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
 
 
   function onMouseDown(e) {
-    var element = e.target.closest("." + dragClass);
+    let element = e.target.closest("." + dragClass);
 
     if ((e.button != 0) || (!element)){ 
         return; 
