@@ -115,7 +115,7 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
     return false;
   }
 
-  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mousemove", onMouseMove);//рефакторить с for in for of************************
   document.addEventListener("mouseup", onMouseUp); 
   document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("mouseover", onMouseOver);
@@ -186,7 +186,7 @@ function setDropPlace(elemObject, dragClass, highlightClass) {
     let drop = dropPlace.style;
     const size = elemObject.size;
 
-    drop.height = size.height;
+    drop.height = size.height;//рефакторить с for in foo of************************
     drop.width = size.width;
     drop.padding = size.padding;
     drop.borderWidth = size.borderWidth;
@@ -197,7 +197,7 @@ function setDropPlace(elemObject, dragClass, highlightClass) {
 
 
 function dropPlaceBefore(target, dropPlace) {
-  let prev = target.previousSibling;
+  let prev = target.previousSibling;//проверить с previousElementSibling *******************************
   while (prev) {
     if(prev == dropPlace) {
       return true;
