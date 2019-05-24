@@ -197,12 +197,12 @@ function setDropPlace(elemObject, dragClass, highlightClass) {
 
 
 function dropPlaceBefore(target, dropPlace) {
-  let prev = target.previousSibling;//проверить с previousElementSibling *******************************
+  let prev = target.previousElementSibling;
   while (prev) {
     if(prev == dropPlace) {
       return true;
     }
-    prev = prev.previousSibling;
+    prev = prev.previousElementSibling;
   }
   return false;
 }
@@ -210,7 +210,7 @@ function dropPlaceBefore(target, dropPlace) {
 
 
 function insertAfter(elem, refElem) {
-  return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+  return refElem.parentNode.insertBefore(elem, refElem.nextElementSibling);
 }
 
 
