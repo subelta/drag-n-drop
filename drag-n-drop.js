@@ -93,10 +93,8 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
       return;
     }
 
-
     const isSibling = target.classList.contains(dragClass);
     const extField = target.closest('.' + extDropFieldClass);
-
 
     if (isSibling) {
       if(dropPlaceBefore(target, dropPlace)) {
@@ -107,7 +105,6 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
       return false;
     } 
 
-
     if (extField) {  
       const dropZone = findDropZone(extField, dropFieldClass);
       if (dropZone) {
@@ -117,6 +114,7 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
     return false;
   }
 
+  
   document.addEventListener("mousemove", onMouseMove);//рефакторить с for in for of************************
   document.addEventListener("mouseup", onMouseUp); 
   document.addEventListener("mousedown", onMouseDown);
