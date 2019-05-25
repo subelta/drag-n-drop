@@ -114,77 +114,71 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
     return false;
   }
 
+
+  function manageScroll(interval, e, currTarg, elemClass, dir) {
+    if (!interval) {
+      if (!e.target.closest("." + elemClass)) {
+        return;
+      };
+      currTarg = e.target.closest("." + elemClass);
+      const hover = scrollArea(e, currTarg, dir);
+    
+      if (hover && elemObject.isDragged) { 
+        console.log(hover);
+        interval = startScroll(interval, currTarg, hover);
+        console.log(interval);
+      }
+      return {interval, currTarg};
+    }
+
+  
+    if (interval) {
+      if (!scrollArea(e, currTarg, dir) || !elemObject.isDragged) {
+        console.log(`targ: ${currTarg.tagName}`);
+        console.log(`area: ${scrollArea(e, currTarg, dir)}`);
+        console.log(`stop: ${interval}`);
+        stopScroll(interval);
+        interval = undefined;
+      }
+      return {interval, currTarg};
+    }
+  }
+
   
   document.addEventListener("mousemove", onMouseMove);//рефакторить с for in for of************************
   document.addEventListener("mouseup", onMouseUp); 
   document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("mouseover", onMouseOver);
-//************************************************************************************************* */
-  let testColInt;
-  const testCol = document.querySelector("#test-col");
-
-  document.addEventListener("mousemove", e => {
-    if (!e.target.closest("#test-col")) {
-      return;
-    };
-
-    if (testColInt) {
-      return;
-    }
-
-    const hover = scrollArea(e, testCol, "y");
-    
-    if (hover && elemObject.isDragged) { 
-      testColInt = startScroll(testColInt, testCol, hover);
-    }
-  });  
-
-  document.addEventListener("mousemove", e => {
-    if (!testColInt) {
-      return;
-    }
-    if (!scrollArea(e, testCol, "y") || !elemObject.isDragged) {
-      stopScroll(testColInt);
-      testColInt = undefined;
-    }
-  });    
-
-
-
-
-  let interval;
-  const main = document.querySelector(".main");
-
-  document.addEventListener("mousemove", e => {
-    if (!e.target.closest(".main")) {
-      return;
-    };
-
-    if (interval) {
-      return;
-    }
-
-    const hover = scrollArea(e, main, "x");
-    if (hover && elemObject.isDragged) { 
-      interval = startScroll(interval, main, hover);
-    }
-  });  
-
-  document.addEventListener("mousemove", e => {
-    if (!interval) {
-      return;
-    }
-    if (!scrollArea(e, main, "x") || !elemObject.isDragged) {
-      stopScroll(interval);
-      interval = undefined;
-    }
-  });  
-
   
-  
-  //******************************************************************************************************** */
+  let columnInt;
+  let target;
+
+  let mainInt;
+  let mainTarg;
+
+  let colInt;
+  let targ;
+
+  document.addEventListener("mousemove", e => {
+    let colState = manageScroll(columnInt, e, target, dropFieldClass, "y");
+    if (colState) {
+      columnInt = colState.interval;
+      target = colState.currTarg;
+    }
+
+    let colSt = manageScroll(colInt, e, targ, extDropFieldClass, "y");
+    if (colSt) {
+      colInt = colSt.interval;
+      targ = colSt.currTarg;
+    }
+
+    let mainState = manageScroll(mainInt, e, mainTarg, "horiz-scroll", "x");
+    if (mainState) {
+      mainInt = mainState.interval;
+      mainTarg = mainState.currTarg;
+    }
+  });  
 };
-
 
 
 
@@ -299,7 +293,7 @@ var unFocus = function () {
 //********************************************************************************************************************************************* */
 
 function startScroll(scrollId, scrollScope, dir) {
-  scrollId = window.setInterval(microScroll, 20, scrollScope, dir);
+  scrollId = window.setInterval(incrementScroll, 20, scrollScope, dir);
   return scrollId;
 }
   
@@ -309,7 +303,7 @@ function stopScroll(scrollId) {
 }
 
 
-function microScroll(scrollScope, direction) {
+function incrementScroll(scrollScope, direction) {
   switch(direction) {
     case "left":
         scrollScope.scrollLeft -= 10;
