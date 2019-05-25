@@ -33,7 +33,6 @@ var DragScope = function(dragClass, dropFieldClass, extDropFieldClass, highlight
 
 
   function onMouseMove(e) {
-    // элемент не зажат
     if (!elemObject.el) {
       return;
     }  
