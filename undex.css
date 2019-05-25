@@ -3,6 +3,8 @@
 .art-drop-zone {
     display: flex;
     justify-content: space-around;
+    overflow-x: auto;
+    flex-wrap: nowrap;
 }
 
 li {
@@ -36,6 +38,8 @@ ul:empty {
 .ext-drop-zone {
     height: 600px;
     overflow: auto;
+    flex: 0 0 auto;
+    margin: 0 10px;
 }
 
 .draggable-article {
