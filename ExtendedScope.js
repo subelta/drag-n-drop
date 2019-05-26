@@ -1,4 +1,3 @@
-// import DragScope from './DragScope'
 
 class ExtendedScope extends DragScope {
     constructor(dragClass, dropFieldClass, extDropFieldClass, highlightClass, dragStyleClass) {

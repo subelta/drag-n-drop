@@ -49,6 +49,7 @@ class DragScope {
         if ((e.button != 0) || (!element)){ 
             return; 
         } 
+        e.preventDefault(); //for Firefox
     
         this.elemObject.el = element;
         //начальные коориднаты зажатия
@@ -56,11 +57,12 @@ class DragScope {
             x: e.pageX, 
             y: e.pageY
         }; 
-        // return false;
     }
 
 
     onMouseMove(e) {
+        e.preventDefault();
+
         if (!this.elemObject.el) {
             return;
         }  
@@ -91,17 +93,15 @@ class DragScope {
         this.elemObject.el.style.left = e.pageX - this.elemObject.shift.x + 'px'; 
         this.elemObject.el.style.top = e.pageY - this.elemObject.shift.y + 'px';
         unFocus();
-        // return false;
     }
 
 
-    onMouseUp() {
+    onMouseUp(e) {
         if (this.elemObject.isDragged) {
             this.dropElement();  
         }
         this.dropPlace = false;
         this.elemObject = {};
-        // return false;
     }
 
 
@@ -135,12 +135,11 @@ class DragScope {
                 dropZone.appendChild(this.dropPlace);
             }
         }
-        // return false;
     }
 
-    
-    
-    defaultScroll(e) {    
+
+
+    defaultScroll(e) {  
         let state = this.manageScroll(
             this.defScrollState.interval, 
             e, 
@@ -343,16 +342,16 @@ class DragScope {
     incrementScroll(scrollScope, direction) {
         switch(direction) {
             case "left":
-                scrollScope.scrollLeft -= 7;
+                scrollScope.scrollLeft -= 10;
                 break;
             case "right":
-                scrollScope.scrollLeft += 7;
+                scrollScope.scrollLeft += 10;
                 break;
             case "up":
-                scrollScope.scrollTop -= 7;
+                scrollScope.scrollTop -= 10;
                 break;
             case "down":
-                scrollScope.scrollTop += 7;
+                scrollScope.scrollTop += 10;
                 break;
         }
     }
