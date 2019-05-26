@@ -177,7 +177,7 @@ class DragScope {
             let drop = this.dropPlace.style;
             const size = this.elemObject.size;
             
-            drop.height = size.height;//рефакторить с for in foo of************************
+            drop.height = size.height;//рефакторить ***************************************************************************
             drop.width = size.width;
             drop.padding = size.padding;
             drop.borderWidth = size.borderWidth;
@@ -253,9 +253,7 @@ class DragScope {
             const hover = this.scrollArea(e, currTarg, dir);
           
             if (hover && this.elemObject.isDragged) { 
-                // console.log(hover);
                 interval = this.startScroll(interval, currTarg, hover);
-                // console.log(interval);
             }
             return {interval, currTarg};
         }
@@ -344,10 +342,10 @@ class DragScope {
                 scrollScope.scrollLeft += 10;
                 break;
             case "up":
-                scrollScope.scrollTop -= 10;
+                scrollScope.scrollTop -= 6;
                 break;
             case "down":
-                scrollScope.scrollTop += 10;
+                scrollScope.scrollTop += 6;
                 break;
         }
     }
