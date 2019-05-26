@@ -1,6 +1,7 @@
 # drag-n-drop
 Simple importable Drag'n'Drop implementation (vanilla JS) 
-
+## [Демо] (https://subelta.github.io/drag-n-drop/test-multiple.html)
+ (пока некрасивое, но рабочее)
 ## Возможности:
 + Простое подключение механики Drag'n'Drop на страницу путем создания экзмепляра класса
 + Скролл при наведении перетаскиваемого элемента на вертикальные илии горизонтальные границы элемента с overflow: scroll/auto
