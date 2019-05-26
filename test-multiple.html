@@ -5,65 +5,365 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="test-multiple.css">
+    <link rel="stylesheet" href="undex.css">
     <title>Document</title>
 </head>
 <body>
     <main>
-        <h1>NOT PLUGGED IN</h1>
-        <div class="container">
-            <div style="background-color: navy" class="box"></div>
-            <div style="background-color: khaki" class="box"></div>
-            <div style="background-color: aqua" class="box"></div>
-            <div style="background-color: springgreen" class="box"></div>
-            <div style="background-color: slateblue" class="box"></div>
-            <div style="background-color: seashell" class="box"></div>
-            <div style="background-color: brown" class="box"></div>
-            <div style="background-color: yellow" class="box"></div>
-            <div style="background-color: green" class="box"></div>
-            <div style="background-color: red" class="box"></div>
+        <div class="boxes">
+            <div class="container">
+                    <div style="background-color: navy" class="box"></div>
+                    <div style="background-color: khaki" class="box"></div>
+                    <div style="background-color: aqua" class="box"></div>
+                    <div style="background-color: springgreen" class="box"></div>
+                    <div style="background-color: slateblue" class="box"></div>
+                    <div style="background-color: seashell" class="box"></div>
+                    <div style="background-color: brown" class="box"></div>
+                    <div style="background-color: yellow" class="box"></div>
+                    <div style="background-color: green" class="box"></div>
+                    <div style="background-color: red" class="box"></div>
+                </div>
+                <div class="container">
+                    <div style="background-color: lightcoral" class="box"></div>
+                    <div style="background-color: magenta" class="box"></div>
+                    <div style="background-color: firebrick" class="box"></div>
+                </div>
+        
+                <div class="other-container">
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                </div>
+                <div class="other-container">
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                    <div style="background-color: slateblue" class="other-box"></div>
+                </div>
         </div>
-        <div class="container">
-            <div style="background-color: lightcoral" class="box"></div>
-            <div style="background-color: magenta" class="box"></div>
-            <div style="background-color: firebrick" class="box"></div>
-        </div>
+        
 
-        <div class="other-container">
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-        </div>
-        <div class="other-container">
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
-            <div style="background-color: slateblue" class="other-box"></div>
+        <div class="articles horiz-scroll">
+            <article class="draggable-article ext-drop-zone">
+                    <header>
+                        <h1>План на месяц</h1>
+                    </header>
+                    <ul class="items-list droppable">
+                        <li class="draggable">Пройти курс по React</li>
+                        <li class="draggable"><button>Отметить День Рождения</button></li>
+                        <li class="draggable">Записаться на курсы английского языка,  чтобы уехать жить в Лондон
+                                                Записаться на курсы английского языка,  чтобы уехать жить в Лондон</li>
+                        <li class="draggable">Сделать бекенда своего сайта на node.js</li>
+                        <li class="draggable">Собрать портфолио</li>
+                        <li class="draggable">НАписать первую статью в блог</li>
+                    </ul>
+                    <footer>
+                        <section>
+                            <p class="p">rtfdydtdrseatsrdjfcgjv</p>
+                            <button class="btn">Добавить еще одну карточку</button>
+                        </section>
+                    </footer>
+                </article>
+                
+                <article class="draggable-article ext-drop-zone">
+                    <ul class="droppable"></ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>a</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>b</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>c</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>d</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>e</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>f</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>g</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>h</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
+        
+                <article class="draggable-article ext-drop-zone">
+                    <h1>l</h1>
+                    <ul class="droppable">
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                        <li class="draggable">argseafa</li>
+                    </ul>
+                </article>
         </div>
     </main>
 
-    <!-- <script src="drag-n-drop.js"></script> -->
+    <script src="DragScope.js"></script>
+    <script src="ExtendedScope.js"></script>
     <script>
-        // var divDrag = new DragScope(
-        //     "box", 
-        //     "container",
-        //     "container",
-        //     "highlighted",
-        //     ""
-        // );
+        var divDrag = new DragScope(
+            "box", 
+            "container",
+            "container",
+            "highlighted",
+            ""
+        );
 
-        // var otherDivDrag = new DragScope(
-        //     "other-box", 
-        //     "other-container",
-        //     "other-container",
-        //     "highlighted",
-        //     ""
-        // );
+        var otherDivDrag = new DragScope(
+            "other-box", 
+            "other-container",
+            "other-container",
+            "highlighted",
+            ""
+        );
+
+        let liScope = new ExtendedScope(
+            "draggable", 
+            "droppable",
+            "ext-drop-zone",
+            "highlighted",
+            ""
+        )
     </script>
 </body>
 </html>

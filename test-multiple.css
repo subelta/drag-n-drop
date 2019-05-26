@@ -1,6 +1,7 @@
-main {
+.boxes {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 30px;
 }
 
 .container {
@@ -42,3 +43,48 @@ main {
 .highlighted {
     background-color: black;
 }
+
+
+.articles {
+    display: flex;
+    justify-content: space-around;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+}
+
+li {
+    background-color: yellow;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+ul:empty {
+    background-color: #fcfcad;
+}
+
+.highlighted {
+    background-color: purple;
+}
+
+.draggable {
+    border: 1px solid lightcoral;
+    padding: 4px 0;
+}
+
+.drag-style {
+    background-color: lightskyblue;
+    transform: rotate(8deg);
+}
+
+.ext-drop-zone {
+    height: 600px;
+    overflow: auto;
+    flex: 0 0 auto;
+    margin: 0 10px;
+}
+
+.draggable-article {
+    background-color: coral;
+    width: 300px;
+}
+
